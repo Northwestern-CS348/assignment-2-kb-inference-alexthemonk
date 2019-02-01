@@ -184,14 +184,14 @@ class KnowledgeBase(object):
                 self.facts.remove(item_in_kb)
 
             for fact_to_delete in item_in_kb.supports_facts:
-                print(fact_to_delete)
+                # print(fact_to_delete)
                 for i in fact_to_delete.supported_by:
                     if item_in_kb in i:
                         fact_to_delete.supported_by.remove(i)
                 self.kb_delete(fact_to_delete)
 
             for rule_to_delete in item_in_kb.supports_rules:
-                print(rule_to_delete)
+                # print(rule_to_delete)
                 for i in rule_to_delete.supported_by:
                     if item_in_kb in i:
                         rule_to_delete.supported_by.remove(i)
@@ -238,7 +238,7 @@ class InferenceEngine(object):
                 # if multiple statements on lhs, remove the first one and instantiate the rest
                 # creating a new rule list
                 # parse that rule list to rule object
-                rule_list = [[],[]]
+                rule_list = [[], None]
                 for lhs_statement in rule.lhs[1:]:
                     rule_list[0].append(instantiate(lhs_statement, binding))
                 rule_list[1] = instantiate(rule.rhs, binding)
